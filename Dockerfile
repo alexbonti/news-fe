@@ -1,24 +1,12 @@
-# base image
-FROM node:12.2.0-alpine
+FROM node:10 
 
-# set working directory
-WORKDIR /usr/src/app
+WORKDIR /app 
+COPY . . 
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+EXPOSE 3061
 
-# install and cache app dependencies
-COPY package*.json ./
-ADD package.json /usr/src/app/package.json
-RUN npm install --silent
-RUN npm install react-scripts@3.0.1 -g --silent
+RUN npm install 
 
-# Bundle app source
-COPY . .
+RUN npm rebuild node-sass
 
-# Specify port
-EXPOSE 3000
-
-# start app
-CMD ["npm", "start"]
-
+CMD ["npm","start"]
