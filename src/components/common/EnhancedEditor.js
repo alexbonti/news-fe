@@ -27,6 +27,7 @@ export const EnhancedEditor = (props) => {
       if (typeof props.getContent === 'function')
         props.getContent(data);
   };
+  console.log("number of re renders")
   useEffect(() => {
     if (props.content)
       _setContent(String(props.content));
